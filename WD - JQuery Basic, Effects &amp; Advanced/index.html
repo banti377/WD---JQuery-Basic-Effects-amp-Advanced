@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Date and Time</title>
+    <style>
+        * {
+            font-size: 30px;
+            text-align: center;
+            margin-top: 100px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        #date {
+            width: 25%;
+            margin: auto;
+            text-align: center;
+            border: 3px solid black;
+            background-color: aqua;
+        }
+
+        #clock {
+            width: 25%;
+            margin: auto;
+            border: 3px solid red;
+            text-align: center;
+            background-color: cadetblue;
+            font-size: 50px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="date"></div>
+    <div id="clock"></div>
+
+    <script>
+        var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        var monthsOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+        function displayDate() {
+            var date = new Date();
+            var dayOfWeek = daysOfWeek[date.getDay()];
+            var monthOfYear = monthsOfYear[date.getMonth()];
+            var dayOfMonth = date.getDate();
+            var year = date.getFullYear();
+
+            var dateText = dayOfWeek + ", " + monthOfYear + " " + dayOfMonth + ", " + year;
+            document.getElementById("date").innerHTML = dateText;
+        }
+
+        function displayClock() {
+            var date = new Date();
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var seconds = date.getSeconds();
+            var meridiem = "AM";
+
+            if (hours > 12) {
+                hours = hours - 12;
+                meridiem = "PM";
+            }
+
+            if (hours < 10) {
+                hours = "0" + hours;
+            }
+
+            if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+
+            if (seconds < 10) {
+                seconds = "0" + seconds;
+            }
+
+            var time = hours + ":" + minutes + ":" + seconds + " " + meridiem;
+            document.getElementById("clock").innerHTML = time;
+        }
+
+        displayDate();
+        displayClock();
+
+        setInterval(displayClock, 1000);
+    </script>
+</body>
+
+</html>
